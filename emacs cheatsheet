@@ -1,0 +1,30 @@
+# Start slime
+M-x slime
+
+# Other buffer
+C-x o
+
+# Close parens
+C-c C-q
+
+# Load current buffer into slime
+C-c C-k
+
+# Evaluate elisp code
+C-x C-e after a single s-expression
+  OR
+M-x eval-buffer
+  OR
+C-j
+
+# column editing
+C-r t
+
+# Delete this window
+C-x 0
+
+# To see what a keybinding does
+C-h k KEY
+
+# Docs for a particular functions
+C-h f
