@@ -1,3 +1,9 @@
 [user]
 	name = Pat Maddox
 	email = pat.maddox@gmail.com
+[alias]
+	co = checkout
+[color]
+	diff = auto
+	status = auto
+	branch = auto
