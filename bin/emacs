@@ -1,0 +1,8 @@
+#!/bin/bash
+ps xc | grep Emacs
+if [ $? -eq 0 ]
+then
+    emacsclient --no-wait $*
+else
+    open /Applications/Emacs.app/ $*
+fi

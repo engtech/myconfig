@@ -1,0 +1,16 @@
+#!/usr/bin/ruby
+
+command = ARGV.first
+pg_ctl  = "/opt/local/lib/postgresql83/bin/pg_ctl"
+pg_dir  = "/opt/local/var/db/postgresql83"
+pg_user = "postgres"
+
+case command
+when "start"
+  `cd #{pg_dir} && su #{pg_user} -c "#{pg_ctl} -D #{pg_dir}/defaultdb start -l /opt/local/var/log/postgresql83/postgres.log"`
+when "stop"
+  `cd #{pg_dir} && su #{pg_user} -c "#{pg_ctl} -D #{pg_dir}/defaultdb stop -s -m fast"`
+else
+  puts "Must pass in command.  (ex) pgd start|stop"
+  exit -1
+end
