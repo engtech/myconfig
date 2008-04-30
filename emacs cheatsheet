@@ -16,6 +16,8 @@ C-x C-e after a single s-expression
 M-x eval-buffer
   OR
 C-j
+  OR
+C-M-x inside s-expression
 
 # column editing
 C-r t
