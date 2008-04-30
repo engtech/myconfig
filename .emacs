@@ -20,7 +20,7 @@
 (global-linum-mode t)
 
 (setq default-major-mode 'text-mode)
-(add-hook 'text-mode-hook 'turn-on-auto-fill)
+(add-hook 'text-mode-hook 'longlines-mode)
 
 (abbrev-mode t)
 
