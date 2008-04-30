@@ -2,7 +2,7 @@
 ps xc | grep Emacs
 if [ $? -eq 0 ]
 then
-    emacsclient --no-wait $*
+    emacsclient $*
 else
     open /Applications/Emacs.app/ $*
 fi
