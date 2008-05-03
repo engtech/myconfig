@@ -1,4 +1,3 @@
-(setq auto-save-default nil)
 (add-to-list 'load-path' "~/.emacs.d")
 (load "project-local-variables")
 
