@@ -24,6 +24,9 @@
 
 (abbrev-mode t)
 
+(require 'ruby-mode)
+(require 'rspec-mode)
+
 ; Pimp my interface
 (set-default-font "-apple-monaco-medium-r-normal--16-120-72-72-m-120-iso10646-1")
 (transient-mark-mode t)
@@ -46,6 +49,9 @@ the mode-line."
 (require 'yasnippet)
 (yas/initialize)
 (yas/load-directory "~/.emacs.d/snippets")
+
+(require 'sweet-editing)
+(require 'auto-indent)
 
 ;;; SLIME & Lisp
 (add-to-list 'load-path' "~/work/lisp/slime-2.0/")
