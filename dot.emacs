@@ -1,12 +1,6 @@
 (add-to-list 'load-path' "~/.emacs.d")
 (load "project-local-variables")
 
-;; Maximize the window...has to be first otherwise other stuff
-;; gets messed up
-(require 'maxframe)
-(setq mf-max-width 1670)
-(add-hook 'window-setup-hook 'maximize-frame t)
-
 (server-start)
 
 ;;; Loading modes
@@ -24,13 +18,14 @@
 
 (abbrev-mode t)
 
+(add-to-list 'auto-mode-alist '("dot.emacs" . emacs-lisp-mode))
+
 (require 'ruby-mode)
 (require 'rspec-mode)
 
 ; Pimp my interface
 (set-default-font "-apple-monaco-medium-r-normal--16-120-72-72-m-120-iso10646-1")
 (transient-mark-mode t)
-(mouse-wheel-mode t)
 (autoload 'window-number-mode "window-number"
   "A global minor mode that enables selection of windows according to
   numbers with the C-x C-j prefix.  Another mode,
@@ -44,7 +39,13 @@ the mode-line."
 (window-number-mode 1)
 (window-number-meta-mode 1)
 
-(autoload 'yaml-mode "yaml-mode")
+(tool-bar-mode nil)
+(menu-bar-mode nil)
+(scroll-bar-mode nil)
+(set-frame-position (selected-frame) 0 0)
+(defun max-window ()
+  (interactive)
+  (mac-toggle-max-window))
 
 (require 'yasnippet)
 (yas/initialize)
