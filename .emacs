@@ -17,6 +17,7 @@
 
 (require 'linum)
 (global-linum-mode t)
+(column-number-mode 1)
 
 (setq default-major-mode 'text-mode)
 (add-hook 'text-mode-hook 'longlines-mode)
@@ -41,9 +42,10 @@ the mode-line."
 (window-number-meta-mode 1)
 
 (autoload 'yaml-mode "yaml-mode")
-(autoload 'rafb-paste "rafb-paste" "" t)
-(autoload 'pastie-region "pastie" "" t)
-(require 'my-ruby)
+
+(require 'yasnippet)
+(yas/initialize)
+(yas/load-directory "~/.emacs.d/snippets")
 
 ;;; SLIME & Lisp
 (add-to-list 'load-path' "~/work/lisp/slime-2.0/")
