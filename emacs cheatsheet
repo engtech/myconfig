@@ -20,7 +20,7 @@ C-j
 C-M-x inside s-expression
 
 # column editing
-C-r t
+C-x r t
 
 # Delete this window
 C-x 0
@@ -30,3 +30,6 @@ C-h k KEY
 
 # Docs for a particular functions
 C-h f
+
+# Run shell command on region
+M-|
