@@ -25,6 +25,8 @@
 (require 'javascript-mode)
 (load "my-textmate")
 
+(show-paren-mode t)
+
 ; Pimp my interface
 (set-default-font "-apple-monaco-medium-r-normal--16-120-72-72-m-120-iso10646-1")
 (transient-mark-mode t)
