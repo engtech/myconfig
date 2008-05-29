@@ -22,6 +22,7 @@
 
 (require 'ruby-mode)
 (require 'rspec-mode)
+(require 'javascript-mode)
 
 ; Pimp my interface
 (set-default-font "-apple-monaco-medium-r-normal--16-120-72-72-m-120-iso10646-1")
