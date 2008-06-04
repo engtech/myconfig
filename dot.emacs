@@ -16,7 +16,7 @@
 (column-number-mode 1)
 
 (setq default-major-mode 'text-mode)
-(add-hook 'text-mode-hook 'refill-mode)
+(add-hook 'text-mode-hook 'auto-fill-mode)
 
 (abbrev-mode t)
 
