@@ -9,12 +9,14 @@
 (setq ido-enable-flex-matching t)
 (global-auto-revert-mode t)
 
+;; Don't use linum because it fails with emacs 22.2 + outline-mode
+;; where the outline has newlines in it
 (require 'linum)
-(global-linum-mode t)
+;(global-linum-mode t)
 (column-number-mode 1)
 
 (setq default-major-mode 'text-mode)
-(add-hook 'text-mode-hook 'longlines-mode)
+(add-hook 'text-mode-hook 'refill-mode)
 
 (abbrev-mode t)
 
