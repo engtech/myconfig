@@ -22,7 +22,7 @@
 
 (add-to-list 'auto-mode-alist '("dot.emacs" . emacs-lisp-mode))
 
-(require 'ruby-mode)
+(require 'my-ruby-mode)
 (require 'rspec-mode)
 (require 'javascript-mode)
 (load "my-textmate")
@@ -45,6 +45,7 @@ the mode-line."
 (window-number-mode 1)
 (window-number-meta-mode 1)
 
+(fset 'yes-or-no-p 'y-or-n-p)
 (tool-bar-mode nil)
 (menu-bar-mode nil)
 (scroll-bar-mode nil)

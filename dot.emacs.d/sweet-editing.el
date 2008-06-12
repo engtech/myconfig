@@ -17,7 +17,7 @@
   "Inserts a blank line after the current one"
   (interactive)
   (end-of-line)
-  (newline))
+  (do-return))
 (define-key global-map (kbd "M-<return>") 'insert-and-move-to-new-line)
 
 (defun insert-before-and-move-to-new-line ()
@@ -25,6 +25,8 @@
   (interactive)
   (previous-line)
   (insert-and-move-to-new-line))
-(define-key global-map (kbd "C-M-<return>") 'insert-before-and-move-to-new-line)
+(define-key global-map (kbd "M-S-<return>") 'insert-before-and-move-to-new-line)
 
+(defun do-return ()
+  (funcall (local-key-binding (kbd "<return>"))))
 (provide 'sweet-editing)
