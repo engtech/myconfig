@@ -60,12 +60,13 @@ the mode-line."
 
 (require 'sweet-editing)
 (require 'auto-indent)
+(require 'switch-buffers-to-dir)
 
 ;;; SLIME & Lisp
-(add-to-list 'load-path' "~/work/lisp/slime-2.0/")
-(setq inferior-lisp-program "/usr/local/bin/sbcl")
-(require 'slime)
-(slime-setup)
+;(add-to-list 'load-path' "~/work/lisp/slime-2.0/")
+;(setq inferior-lisp-program "/usr/local/bin/sbcl")
+;(require 'slime)
+;(slime-setup)
 
 ;; Keybindings ftw
 (global-set-key (kbd "M-l") 'goto-line)
