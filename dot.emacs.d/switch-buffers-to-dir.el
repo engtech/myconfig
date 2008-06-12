@@ -29,7 +29,7 @@ existing buffers at the new prefix - dir2/foo and dir2/bar"
   "Changes a set of buffers to point at a different path
 For example, if you had buffers pointed at dir1/foo and
 dir1/bar, running
-(switch-buffers-from-to \"dir1\" \"dir2\")
+\(switch-buffers-from-to \"dir1\" \"dir2\"\)
 would point the buffers at dir2/foo and dir2/bar"
 
   (let ((current-buffer-name (buffer-name (current-buffer))))
@@ -37,11 +37,11 @@ would point the buffers at dir2/foo and dir2/bar"
 	  (lambda (f)
 	    (let ((new-file-name
 		   (replace-regexp-in-string
-		    (regexp-quote prefix) replacement f)))
+		  (regexp-quote prefix) replacement f)))
 	      (switch-buffer-containing-file-to-dir
 	       f new-file-name))))
     (switch-to-buffer current-buffer-name)))
-    
+
   
 (defun find-buffer-for (filename)
   "Finds the open buffer pointed at filename"
@@ -57,10 +57,13 @@ would point the buffers at dir2/foo and dir2/bar"
 
 (defun ask-for-path-prefix ()
   (interactive)
-  (read-from-minibuffer "Path prefix: "))
+  (prompt-for-dir "Path to replace: "))
 
 (defun ask-for-path-replacement ()
   (interactive)
-  (read-from-minibuffer "Path replacement: "))
+  (prompt-for-dir "Path replacement: "))
+
+(defun prompt-for-dir (prompt)
+  (expand-file-name (read-file-name prompt default-directory default-directory)))
 
 (provide 'switch-buffers-to-dir)
