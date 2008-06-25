@@ -28,5 +28,5 @@
 (define-key global-map (kbd "M-S-<return>") 'insert-before-and-move-to-new-line)
 
 (defun do-return ()
-  (funcall (or (local-key-binding (kbd "<return>")) 'newline)))
+  (funcall (or (local-key-binding (kbd "<return>")) (key-binding (kbd "RET")))))
 (provide 'sweet-editing)
