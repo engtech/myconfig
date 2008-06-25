@@ -27,6 +27,8 @@
 (require 'javascript-mode)
 (load "my-textmate")
 
+(require 'my-scala-mode)
+
 (show-paren-mode t)
 
 ; Pimp my interface
