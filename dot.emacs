@@ -59,10 +59,7 @@ the mode-line."
   (interactive)
   (mac-toggle-max-window))
 
-(require 'yasnippet)
-(yas/initialize)
-(yas/load-directory "~/.emacs.d/snippets")
-
+(require 'my-yasnippet)
 (require 'sweet-editing)
 (require 'auto-indent)
 (require 'switch-buffers-to-dir)

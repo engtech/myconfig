@@ -3,6 +3,7 @@
 	email = pat.maddox@gmail.com
 [alias]
 	co = checkout
+        cam = commit -a -m
 [color]
 	diff = auto
 	status = auto
