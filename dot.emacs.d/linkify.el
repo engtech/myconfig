@@ -119,7 +119,6 @@
    'action 'linkify-follow
    'follow-link t))
 
-
 (defun linkify-filter (proc string)
   "Filter for a stream. For each line check to see if a link can be created. If
 so create a button in the output buffer linking to this file"
@@ -131,15 +130,16 @@ so create a button in the output buffer linking to this file"
 	(save-excursion
 	  ;; Insert the text, advancing the process marker.
 	  (goto-char (process-mark proc))
-	  (dolist (line (split-string string "[\n\r]+"))
-	    (if (linkify-test-string line)
-		(linkify-make-button
-		 (point)
-		 (progn
-		   (insert line)
-		   (point)))
-	      (insert line))
-	    (newline))
+          (let ((lines (split-string string "[\n\r]+")))
+            (dolist (line lines)
+              (if (linkify-test-string line)
+                  (linkify-make-button
+                   (point)
+                   (progn
+                     (insert line)
+                     (point)))
+                (insert line))
+              (unless (string= line (car (last lines))) (newline))))
 	  (set-marker (process-mark proc) (point)))
 	(if moving (goto-char (process-mark proc))))
       (setq buffer-read-only was-read-only))))
