@@ -71,7 +71,6 @@ the mode-line."
 
 ;; Keybindings ftw
 (global-set-key (kbd "M-l") 'goto-line)
-(global-set-key (kbd "C-x t") 'transpose-words)
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
