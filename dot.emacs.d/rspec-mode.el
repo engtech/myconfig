@@ -35,9 +35,15 @@
   (interactive)
   (do-run-spec (concat "--line=" (number-to-string (line-number-at-pos)))))
 
+(require 'linkify)
 (defun do-run-spec (&rest args)
-  (if (get-buffer "rspec-results") (kill-buffer "rspec-results"))
-  (apply #'start-process "rspec" "rspec-results" (spec-command) (buffer-file-name) args)
-  (display-buffer "rspec-results"))
-
+  (setq rspec-results (get-buffer-create "rspec-results"))
+  (save-excursion
+    (set-buffer rspec-results)
+    (erase-buffer)
+    (make-local-variable 'linkify-regexps)
+    (setq linkify-regexps '("^\\(/.*\\):\\([0-9]*\\):$")))
+  (setq proc (apply #'start-process "rspec" rspec-results (spec-command) (buffer-file-name) args))
+  (set-process-filter proc 'linkify-filter)
+  (display-buffer rspec-results))
 (provide 'rspec-mode)
