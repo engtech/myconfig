@@ -20,11 +20,10 @@
 
 (abbrev-mode t)
 
-(add-to-list 'auto-mode-alist '("dot.emacs" . emacs-lisp-mode))
-
 (require 'my-ruby-mode)
 (require 'rspec-mode)
 (require 'javascript-mode)
+(require 'my-emacs-lisp-mode)
 (load "my-textmate")
 
 (require 'my-scala-mode)
