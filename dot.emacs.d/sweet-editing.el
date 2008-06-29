@@ -29,4 +29,5 @@
 
 (defun do-return ()
   (funcall (or (local-key-binding (kbd "<return>")) (key-binding (kbd "RET")))))
+
 (provide 'sweet-editing)

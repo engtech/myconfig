@@ -60,6 +60,7 @@ the mode-line."
 
 (require 'my-yasnippet)
 (require 'sweet-editing)
+(require 'project-nav)
 (require 'auto-indent)
 (require 'switch-buffers-to-dir)
 
@@ -86,3 +87,5 @@ the mode-line."
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  )
+
+(put 'erase-buffer 'disabled nil)
