@@ -49,17 +49,21 @@
                                     (mapcar (lambda (s) (concat "'" s "'")) files)
                                     " "))))
 
-;; (defun allowed-file-type-p (f)
-;;   (mapcar
-;;    (lambda (r) )(list "\.rb$"
-;;         "^Rakefile$"
-;;         "\.el$"
-;;         ))
+(defun known-file-type-p (file)
+  (detect
+   (mapcar
+    (lambda (regex) (string-match regex file))
+    (list "\.rb$"
+          "^Rakefile$"
+          "\.el$"
+          ))
+   (lambda (matches) matches)))
+
 (defun file-filters ()
   (list
    (lambda (s) (file-directory-p s))
-   (lambda (s) (string-match "^\.git" s))
-   (lambda (s) (string-match "^\.svn" s))
+   (lambda (s) (string-match "\.git" s))
+   (lambda (s) (string-match "\.svn" s))
    (lambda (s) (string-match "^vendor\/" s))
    (lambda (s) (string-match "~$" s))
    (lambda (s) (string-match "^\.#" s))
@@ -67,11 +71,13 @@
    (lambda (s) (string-match "#$" s))
 
    (lambda (s)
-     (let* ((result
-             (shell-command-to-string (concat "file '" s "' | awk '{$1=\"\"; print}'")))
-            (file-type (replace-regexp-in-string "^[ ]*\\(.*\\)[ \n]*$" "\\1" result)))
-       (not (or (string= "" file-type) (string-match "text" file-type)))))
-))
+     (and (not (known-file-type-p s))
+          (let* ((result
+                  (shell-command-to-string (concat "file '" s "' | awk '{$1=\"\"; print}'")))
+                 (file-type (replace-regexp-in-string "^[ ]*\\(.*\\)[ \n]*$" "\\1" result)))
+            (not (or (string= "" file-type) (string-match "text" file-type)))))
+     )
+   ))
 
 (defun apply-filter (f list)
   (remove-if (lambda (s) (funcall f s)) list))
