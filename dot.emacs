@@ -65,13 +65,17 @@ the mode-line."
 (require 'switch-buffers-to-dir)
 
 ;;; SLIME & Lisp
-;(add-to-list 'load-path' "~/work/lisp/slime-2.0/")
-;(setq inferior-lisp-program "/usr/local/bin/sbcl")
-;(require 'slime)
-;(slime-setup)
+(let ((slime-dir "~/.emacs.d/slime"))
+  (if (file-directory-p slime-dir)
+      (progn
+        (add-to-list 'load-path' slime-dir)
+        (setq inferior-lisp-program "/opt/local/bin/sbcl")
+        (require 'slime)
+        (slime-setup))))
 
 ;; Keybindings ftw
 (global-set-key (kbd "M-l") 'goto-line)
+(global-set-key (kbd "C-S-j") 'join-line)
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.

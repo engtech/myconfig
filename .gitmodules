@@ -1,0 +1,3 @@
+[submodule "dot.emacs.d/slime"]
+	path = dot.emacs.d/slime
+	url = git://github.com/nablaone/slime.git
