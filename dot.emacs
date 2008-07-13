@@ -66,7 +66,8 @@ the mode-line."
 
 ;;; SLIME & Lisp
 (let ((slime-dir "~/.emacs.d/slime"))
-  (if (file-directory-p slime-dir)
+  (if (and (file-directory-p slime-dir)
+           (member "slime.el" (directory-files slime-dir)))
       (progn
         (add-to-list 'load-path' slime-dir)
         (setq inferior-lisp-program "/opt/local/bin/sbcl")
