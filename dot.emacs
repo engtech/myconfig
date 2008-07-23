@@ -7,6 +7,7 @@
 (require 'ido)
 (ido-mode t)
 (setq ido-enable-flex-matching t)
+(setq ido-auto-merge-work-directories-length -1)
 (global-auto-revert-mode t)
 
 ;; Don't use linum because it fails with emacs 22.2 + outline-mode
