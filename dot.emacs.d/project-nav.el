@@ -128,29 +128,9 @@
 (defadvice ido-name (after only-return-file-name)
   (setq ad-return-value (file-name-nondirectory ad-return-value)))
 
-(defadvice ido-set-matches-1 (around always-fuzzy-match (items &optional do-full))
+(defadvice ido-set-matches-1 (around match-against-filename-only)
   (ad-activate 'ido-name)
-  (setq ad-return-value (pnav-ido-set-matches-1 items do-full))
+  ad-do-it
   (ad-deactivate 'ido-name))
-
-(defun pnav-ido-set-matches-1 (items &optional do-full)
-  ;; Return list of matches in items
-  (let* ((slash (and (not ido-enable-prefix) (ido-final-slash ido-text)))
-	 (text (if slash (substring ido-text 0 -1) ido-text))
-	 (rex0 (if ido-enable-regexp text (regexp-quote text)))
-	 (rexq (concat rex0 (if slash ".*/" "")))
-	 (re (if ido-enable-prefix (concat "\\`" rexq) rexq))
-         matches)
-    (setq ido-incomplete-regexp nil)
-    (setq re (mapconcat #'regexp-quote (split-string ido-text "") ".*"))
-    (if ido-enable-prefix
-        (setq re (concat "\\`" re)))
-    (mapcar
-     (lambda (item)
-       (let ((name (ido-name item)))
-         (if (string-match re name)
-             (setq matches (cons item matches)))))
-     items)
-    matches))
 
 (provide 'project-nav)
