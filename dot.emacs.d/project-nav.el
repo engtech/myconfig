@@ -91,9 +91,9 @@
 (defun pnav-file-filters ()
   (list
    (lambda (s) (file-directory-p s))
-   (lambda (s) (string= ".git/" (file-name-directory s)))
-   (lambda (s) (string= ".svn/" (file-name-directory s)))
-   (lambda (s) (string= ".vendor/" (file-name-directory s)))
+   (lambda (s) (string-match "^\.git\/" s))
+   (lambda (s) (string-match "^\.svn\/" s))
+   (lambda (s) (string-match "^vendor\/" s))
    (lambda (s) (string-match "~$" s))
    (lambda (s) (string-match "#" s))
 
