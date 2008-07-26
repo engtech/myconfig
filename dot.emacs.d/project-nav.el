@@ -17,11 +17,18 @@
     (let ((tags-file (concat (project-root) "TAGS")))
       (unless (file-exists-p tags-file) (error "No TAGS file found"))
       (visit-tags-table-buffer tags-file)
-      (let ((chosen-file
-             (ido-completing-read "Project file: "
-                                  (tags-table-files)
-                                  nil t)))
+      (let ((chosen-file (get-file-from-prompt)))
         (funcall fun chosen-file)))))
+
+(defun get-file-from-prompt ()
+  (unwind-protect
+      (progn
+        (ad-activate 'ido-set-matches-1)
+        (setq chosen-file (ido-completing-read "Project file: "
+                                               (tags-table-files)
+                                               nil t))
+        chosen-file)
+    (ad-deactivate 'ido-set-matches-1)))
 
 (defun find-files-in-project ()
   (interactive)
@@ -96,5 +103,13 @@
 
   
 (global-set-key (kbd "M-t") 'find-files-in-project)
+
+(defadvice ido-name (after only-return-file-name)
+  (setq ad-return-value (file-name-nondirectory ad-return-value)))
+
+(defadvice ido-set-matches-1 (around match-against-filename-only)
+  (ad-activate 'ido-name)
+  ad-do-it
+  (ad-deactivate 'ido-name))
 
 (provide 'project-nav)
