@@ -1,0 +1,27 @@
+* Fetch and review changes before committing to local branch
+git fetch git://some_remote_repo
+git log -p FETCH_HEAD
+
+* To merge the changes
+git merge FETCH_HEAD
+
+* Reset after the changes
+git reset --hard ORIG_HEAD
+
+* To reset the working copy to any commit
+git reset --hard abc123
+
+* To see the difference between two commits
+git diff abc123..foo456
+
+* To see the reflog, with date format
+git log -g HEAD@{now}
+
+* List all the reachable commits
+git rev-list --all --reflog
+
+* List all commits reachable in reflog but not in branch tips.  i.e. ones that I've reset away
+git rev-list --reflog --not --all
+
+* To delete a branch from the remote repository, and to delete its tracking reference locally (but do not delete the local branch)
+git push origin :branchname
