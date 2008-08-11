@@ -57,7 +57,9 @@ the mode-line."
 (set-frame-position (selected-frame) 0 0)
 (defun max-window ()
   (interactive)
-  (mac-toggle-max-window))
+  (set-frame-parameter nil 'fullscreen
+                       (if (frame-parameter nil 'fullscreen) nil 'fullboth)))
+(max-window)
 
 (require 'my-yasnippet)
 (require 'sweet-editing)
